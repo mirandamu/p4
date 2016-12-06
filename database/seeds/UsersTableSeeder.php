@@ -14,9 +14,9 @@ class UsersTableSeeder extends Seeder
     {
 
         $users = [
-            ['jill@harvard.edu','jill','helloworld'], 
-            ['jamal@harvard.edu','jamal','helloworld'], 
-            ['mym421@g.harvard.edu','miranda','helloworld'] 
+            ['jill@harvard.edu','Jill','helloworld'], 
+            ['jamal@harvard.edu','Jamal','helloworld'], 
+            ['mym421@g.harvard.edu','Miranda','helloworld'] 
         ];
 
         $existingUsers = User::all()->keyBy('email')->toArray();

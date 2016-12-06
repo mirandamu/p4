@@ -17,19 +17,25 @@ class CreateTripsTable extends Migration
 
             $table->increments('id');
             $table->timestamps();
-            $table->date('departure_date');
-            $table->time('departure_time')->nullable();;
-            $table->date('return_date');
-            $table->time('return_time')->nullable();;
             $table->string('origin');
             $table->string('destination');
-            $table->string('airline')->nullable();
-            $table->string('flight_confirmation')->nullable();
+            $table->string('purpose')->nullable();
+
+            $table->date('departure_date');
+            $table->time('departure_time')->nullable();
+            $table->string('departure_airline')->nullable();
+            $table->string('departure_confirmation')->nullable();
             $table->string('departure_flight_number')->nullable();
+            
+            $table->date('return_date');
+            $table->time('return_time')->nullable();
+            $table->string('return_airline')->nullable();
+            $table->string('return_confirmation')->nullable();
             $table->string('return_flight_number')->nullable();
+
+
             $table->string('accomodation_name')->nullable();
             $table->string('accomodation_address')->nullable();
-            $table->string('purpose');
 
         });
     }
