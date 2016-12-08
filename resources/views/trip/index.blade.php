@@ -15,8 +15,8 @@
     @else
         @foreach($trips as $trip)
             <a href='/trips/{{ $trip->id }}'><h3>{{ $trip->destination }}</h3></a>
-            <a href='/trips/{{ $trip->id }}/edit'>Edit</a>
             <a href='/trips/{{ $trip->id }}'>View</a>
+            <a href='/trips/{{ $trip->id }}/edit'>Edit</a>
             <a href='/trips/{{ $trip->id }}/delete'>Delete</a>
         @endforeach
         </div>

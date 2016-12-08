@@ -18,10 +18,6 @@
         <input type="text" id="destination" name="destination" value="{{ old('destination', 'Boston, MA') }}"></label>*
         <div class="error">{{ $errors->first('destination')}}</div>
 
-        <label for="purpose">Purpose of trip:
-        <input type="text" id="purpose" name="purpose" value="{{ old('purpose', 'Leisure') }}"></label>
-        <div class="error">{{ $errors->first('purpose')}}</div>
-
         <fieldset>
             <legend>Departure Flight</legend>
             <label for="departure_date">Date:
@@ -79,6 +75,13 @@
             <div class="error">{{ $errors->first('accomodation_address')}}</div>
         </fieldset>
 
+        <span>Add tags:</span><br>
+        @foreach($tags_for_checkboxes as $tag_id => $tag_name)
+            <label for="{{ $tag_name }}">
+            <input type="checkbox" value="{{ $tag_id }}" name="tags[]" id="{{ $tag_name }}"> {{ $tag_name }} </label>
+        @endforeach
+
+        <br>
         <button type="submit">Add Trip</button>
 
         {{--

@@ -6,16 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Trip;
+use App\Tag;
 use Session;
+use DB;
 
 
 class TripController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         
@@ -27,27 +25,20 @@ class TripController extends Controller
         else {
             $trips = [];
         }
-        return view('trips.index')->with([
+        return view('trip.index')->with([
             'trips' => $trips
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        return view('trips.create');
+        $tags_for_checkboxes = Tag::getForCheckboxes();
+
+        return view('trip.create')->with(['tags_for_checkboxes' => $tags_for_checkboxes]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
          # Validate
@@ -69,7 +60,6 @@ class TripController extends Controller
         $trip = new Trip();
         $trip->origin = $request->input('origin');
         $trip->destination = $request->input('destination');
-        $trip->purpose = $request->input('purpose');
         $trip->departure_date = $request->input('departure_date');
         $trip->departure_time = $request->input('departure_time');
         $trip->departure_airline = $request->input('departure_airline');
@@ -84,55 +74,112 @@ class TripController extends Controller
         $trip->accomodation_address = $request->input('accomodation_address');
         $trip->user_id = $request->user()->id;
         $trip->save();
+
+        $tags = ($request->tags) ?: [];
+        $trip->tags()->sync($tags);
+        $trip->save();
         
         Session::flash('flash_message', 'Your trip to '.$trip->destination.' was added.');
         return redirect('/trips');
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        $trip = Trip::find($id);
+        if(is_null($trip)) {
+            Session::flash('flash_message','Book not found');
+            return redirect('/trips');
+        }
+        return view('trip.show')->with([
+            'trip' => $trip,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        $trip = Trip::find($id);
+
+        $tags_for_checkboxes = Tag::getForCheckboxes();
+        $tags_for_this_trip = [];
+        foreach($trip->tags as $tag) {
+            $tags_for_this_trip[] = $tag->name;
+        }
+        return view('trip.edit')->with(
+            [
+                'trip' => $trip,
+                'tags_for_checkboxes' => $tags_for_checkboxes,
+                'tags_for_this_trip' => $tags_for_this_trip,
+            ]
+        );
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        # Validate
+        /*$this->validate($request, [
+            'title' => 'required|min:3',
+            'published' => 'required|min:4|numeric',
+            'cover' => 'required|url',
+            'purchase_link' => 'required|url',
+        ]);*/
+
+        $trip = Trip::find($id);
+        $trip->origin = $request->origin;
+        $trip->destination = $request->destination;
+        $trip->departure_date = $request->departure_date;
+        $trip->departure_time = $request->departure_time;
+        $trip->departure_airline = $request->departure_airline;
+        $trip->departure_confirmation = $request->departure_confirmation;
+        $trip->departure_flight_number = $request->departure_flight_number;
+        $trip->return_date = $request->return_date;
+        $trip->return_time = $request->return_time;
+        $trip->return_airline = $request->return_airline;
+        $trip->return_confirmation = $request->return_confirmation;
+        $trip->return_flight_number = $request->return_flight_number;
+        $trip->accomodation_name = $request->accomodation_name;
+        $trip->accomodation_address = $request->accomodation_address;
+        $trip->save();
+
+        if($request->tags) {
+            $tags = $request->tags;
+        }
+        else {
+            $tags = [];
+        }
+
+        $trip->tags()->sync($tags);
+        $trip->save();
+
+        Session::flash('flash_message', 'Your changes to '.$trip->title.' were saved.');
+        return redirect('/trips');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function delete($id) {
+        $trip = Trip::find($id);
+        return view('trip.delete')->with('trip', $trip);
+    }
+
     public function destroy($id)
     {
-        //
+
+        $trip = Trip::find($id);
+        if(is_null($trip)) {
+            Session::flash('flash_message','Trip not found.');
+            return redirect('/trips');
+        }
+
+        if($trip->tags()) {
+            $trip->tags()->detach();
+        }
+
+        $trip->delete();
+
+        Session::flash('flash_message', $trip->title.' was deleted.');
+        return redirect('/trips');
+
     }
 
 }

@@ -21,6 +21,7 @@ Route::post('/trips', 'TripController@store')->name('trips.store')->middleware('
 Route::get('/trips/{trip}', 'TripController@show')->name('trips.show')->middleware('auth');
 Route::get('/trips/{trip}/edit', 'TripController@edit')->name('trips.edit')->middleware('auth');
 Route::put('/trips/{trip}', 'TripController@update')->name('trips.update')->middleware('auth');
+Route::get('/trips/{trip}/delete', 'TripController@delete')->name('trips.delete')->middleware('auth');
 Route::delete('/trips/{trip}', 'TripController@destroy')->name('trips.destroy')->middleware('auth');
 
 Auth::routes();

@@ -19,7 +19,6 @@ class CreateTripsTable extends Migration
             $table->timestamps();
             $table->string('origin');
             $table->string('destination');
-            $table->string('purpose')->nullable();
 
             $table->date('departure_date');
             $table->time('departure_time')->nullable();
