@@ -9,31 +9,195 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: #286251;
-  color: #fff;
+  background-color: #fff;
+  color: #555;
   font-family: Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+}
+
+main {
+  padding: 0 2.25rem 2rem;
+  overflow: auto;
+  width: 100%;
 }
 
 a, a:visited, a:active {
-  color: #fff;
+  color: #88B04B;
   text-decoration: underline;
 }
 
 a:hover {
+  color: #555;
   text-decoration: none;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
 }
 
 nav {
   overflow: auto;
+  width: 100%;
+  padding: 2rem 1rem 1rem 1rem;
 }
 
 nav ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: 0 1rem 0 0;
+  padding: 1.25rem 0 0;
   float: right;
 }
 
 nav li {
   display: inline-block;
+  padding-left: .75rem;
 }
+
+nav a,
+ul.usernav a {
+  padding: 1rem;
+}
+
+nav li a, ul.usernav a,
+nav li a:visited, ul.usernav a:visited,
+nav li a:active, ul.usernav a:active {
+  background-color: #88B04B;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+nav li a:hover, ul.usernav a:hover {
+  background-color: #fff;
+  color: #88B04B;
+  border: 1px solid #88B04B;
+  cursor: pointer;
+}
+
+#logo {
+  font-size: 3rem;
+  text-decoration: none;
+}
+
+#frontpage li {
+  font-size: 1.5rem;
+}
+
+ul.usernav, 
+div.individualtrip ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.usernav li,
+div.individualtrip li {
+  display: inline-block;
+}
+
+ul.usernav li + li,
+div.individualtrip li + li {
+  padding-left: .25rem;
+}
+
+section + section {
+  margin-top: 3rem;
+}
+
+div.tripinformation {
+  overflow: auto;
+  width: 100%;
+}
+
+div.individualtrip {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 2rem;
+  font-size: 1.25rem;
+  width: 49%;
+  float: left;
+  margin-bottom: 1.5rem;
+}
+
+.individualtrip:nth-child(odd) {
+  margin-left: 24px;
+}
+
+div.individualtrip h3,
+section.tripoverview h2, 
+section.tripdetails h2 {
+  padding: 0 0 .5rem;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+div.individualtrip ul {
+  padding: .25rem 0;
+}
+
+.tripoverview, .tripdetails {
+  border: 1px solid #000;
+  border-radius: 8px;
+  width: 49%; 
+  min-height: 200px;
+  padding: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
+
+.tripdetails {
+  float: left;
+  margin-top: 1.5rem;
+}
+
+.tripdetails:nth-child(even) {
+  margin-left: 24px;
+}
+
+.tripdetails ul {
+  margin: 0;
+}
+
+.map {
+  margin-top: 2rem;
+}
+
+.confirmdelete p {
+  font-weight: bolder;
+  font-size: 1.5rem;
+  margin: 1rem 0 .5rem;
+}
+
+input[type="submit"],
+input[type="submit"] + a {
+  padding: 1rem; 
+  background-color: #88B04B; 
+  border: 0 none;
+  cursor: pointer;
+  border-radius: 8px; 
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+}
+
+input[type="submit"]:hover,
+input[type="submit"] + a:hover {
+  color: #88B04B;
+  background-color: #fff;
+  border: 1px solid #88B04B;
+}
+
+input[type="submit"] + a {
+  margin-left: 20px;
+}
+

@@ -35,6 +35,7 @@ class CreateTripsTable extends Migration
 
             $table->string('accomodation_name')->nullable();
             $table->string('accomodation_address')->nullable();
+            $table->string('accomodation_website')->nullable();
 
         });
     }

@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Trip;
 use App\Tag;
 use Session;
-use DB;
-
+use Carbon\Carbon;
 
 class TripController extends Controller
 {
 
     public function index(Request $request)
     {
-        
+        $today = Carbon::today();
         $user = $request->user();
 
         if($user) {
-            $trips = Trip::where('user_id', '=', $user->id)->orderBy('id','DESC')->get();
+            $trips = Trip::where([
+                ['user_id', '=', $user->id],
+                ['return_date', '>', $today ]
+                ])->orderBy('departure_date','ASC')->get();
         }
         else {
             $trips = [];
@@ -47,7 +50,13 @@ class TripController extends Controller
             'published' => 'required|min:4|numeric',
             'cover' => 'required|url',
             'purchase_link' => 'required|url',
-        ]); */
+        ]); 
+
+        don't forget : url NEEDS http:// in front
+        date must be certain format
+        time must be certain format */
+
+
 
         # If there were errors, Laravel will redirect the
         # user back to the page that submitted this request
@@ -72,6 +81,7 @@ class TripController extends Controller
         $trip->return_flight_number = $request->input('return_flight_number');
         $trip->accomodation_name = $request->input('accomodation_name');
         $trip->accomodation_address = $request->input('accomodation_address');
+        $trip->accomodation_address = $request->input('accomodation_website');
         $trip->user_id = $request->user()->id;
         $trip->save();
 
@@ -88,11 +98,17 @@ class TripController extends Controller
     {
         $trip = Trip::find($id);
         if(is_null($trip)) {
-            Session::flash('flash_message','Book not found');
+            Session::flash('flash_message','Trip not found');
             return redirect('/trips');
         }
+
+        $departure_date = new Carbon($trip->departure_date);
+        $return_date = new Carbon($trip->return_date);
+        $number_days = ($return_date->diffInDays($departure_date));
+
         return view('trip.show')->with([
             'trip' => $trip,
+            'number_days' => $number_days
         ]);
     }
 

@@ -84,8 +84,12 @@
             <label for="{{ $tag_name }}">
             <input type="checkbox" value="{{ $tag_id }}" name="tags[]" id="{{ $tag_name }}" {{ (in_array($tag_name, $tags_for_this_trip)) ? 'checked' : '' }}> {{ $tag_name }} </label>
         @endforeach
-
         <br>
+
+        <label for="notes">Additional notes:</label><br>
+        <textarea name="notes" id="notes" rows="4" cols="50"></textarea>
+        <br>
+        
         <button type="submit">Save changes</button><br>
         <a href="/trips">Go back to dashboard without making changes</a>
 
