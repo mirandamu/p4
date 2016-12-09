@@ -41,5 +41,7 @@
         <main>
         @yield('content')
         </main>
+
+        <script src="{{ URL::asset('/js/main.js') }}"></script>
     </body>
 </html>

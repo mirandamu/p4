@@ -83,6 +83,18 @@ nav li a:hover, ul.usernav a:hover {
   cursor: pointer;
 }
 
+.flash_message {
+  background-color: #88B04B;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
 #logo {
   font-size: 3rem;
   text-decoration: none;
@@ -106,7 +118,7 @@ div.individualtrip li {
 
 ul.usernav li + li,
 div.individualtrip li + li {
-  padding-left: .25rem;
+  padding-left: .75rem;
 }
 
 section + section {
@@ -198,6 +210,38 @@ input[type="submit"] + a:hover {
 }
 
 input[type="submit"] + a {
-  margin-left: 20px;
+  margin-left: .75rem;
 }
 
+form {
+  font-size: 1.25rem;
+  width: 75%;
+  border: 1px solid #88B04B;
+  border-radius: 8px;
+  margin: auto;
+  margin-top: 2rem;
+  padding: 0 2rem 1.75rem 2rem;
+}
+
+form input {
+  margin: .5rem 0;
+  font-size: 1rem;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+form fieldset {
+  margin-top: 1rem;
+}
+
+.tagspan {
+  display: block;
+  margin-top: 1rem;
+  font-size: 1.25rem;
+}
+
+a.otheropts, 
+a.otheropts:visited, 
+a.otheropts:hover,
+a.otheropts:active {
+  font-size: 1rem;
+}

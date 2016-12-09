@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-    <h1>Confirm Deletion</h1>
-
     <form class="confirmdelete" method='POST' action='/trips/{{ $trip->id }}'>
 
         {{ method_field('DELETE') }}
 
         {{ csrf_field() }}
+        
+        <h1>Confirm Deletion</h1>
 
         <section class="tripoverview">
             <h2>Trip Overview</h2>

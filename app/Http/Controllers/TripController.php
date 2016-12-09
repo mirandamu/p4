@@ -169,7 +169,7 @@ class TripController extends Controller
         $trip->tags()->sync($tags);
         $trip->save();
 
-        Session::flash('flash_message', 'Your changes to '.$trip->title.' were saved.');
+        Session::flash('flash_message', 'Your changes to '.$trip->destination.' were saved.');
         return redirect('/trips');
     }
 
@@ -193,7 +193,7 @@ class TripController extends Controller
 
         $trip->delete();
 
-        Session::flash('flash_message', $trip->title.' was deleted.');
+        Session::flash('flash_message', 'Your trip to '.$trip->destination.' was deleted.');
         return redirect('/trips');
 
     }
