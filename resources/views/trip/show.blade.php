@@ -7,7 +7,7 @@
 @section('content')
     <div class="tripinformation">
         <section>
-            <h1>{{ $trip->destination }}</h1>
+            <h1>Your Trip To <em>{{ $trip->destination }}</em></h1>
             <ul class="usernav">
                 <li><a href='/trips/{{ $trip->id }}/edit'>Edit</a></li>
                 <li><a href='/trips/{{ $trip->id }}/delete'>Delete</a></li>

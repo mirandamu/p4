@@ -21,6 +21,10 @@ main {
   width: 100%;
 }
 
+#frontpage img {
+  width: 100%;
+}
+
 a, a:visited, a:active {
   color: #88B04B;
   text-decoration: underline;
