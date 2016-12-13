@@ -179,10 +179,6 @@ div.individualtrip ul {
   margin: 0;
 }
 
-.map {
-  margin-top: 2rem;
-}
-
 .confirmdelete p {
   font-weight: bolder;
   font-size: 1.5rem;
@@ -244,4 +240,16 @@ a.otheropts:visited,
 a.otheropts:hover,
 a.otheropts:active {
   font-size: 1rem;
+}
+
+#notes {
+  font-family: Helvetica, Arial, sans-serfif;
+  font-size: 1rem;
+}
+
+pre {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.1rem;
 }

@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/trips', 'TripController@index')->name('trips.index')->middleware('auth');
+Route::get('/trips/past', 'TripController@past')->name('trips.past')->middleware('auth');
 Route::get('/trips/create', 'TripController@create')->name('trips.create')->middleware('auth');
 Route::post('/trips', 'TripController@store')->name('trips.store')->middleware('auth');
 Route::get('/trips/{trip}', 'TripController@show')->name('trips.show')->middleware('auth');
@@ -23,6 +24,7 @@ Route::get('/trips/{trip}/edit', 'TripController@edit')->name('trips.edit')->mid
 Route::put('/trips/{trip}', 'TripController@update')->name('trips.update')->middleware('auth');
 Route::get('/trips/{trip}/delete', 'TripController@delete')->name('trips.delete')->middleware('auth');
 Route::delete('/trips/{trip}', 'TripController@destroy')->name('trips.destroy')->middleware('auth');
+
 
 Auth::routes();
 Route::get('/logout','Auth\LoginController@logout')->name('logout');

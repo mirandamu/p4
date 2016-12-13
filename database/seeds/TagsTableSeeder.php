@@ -12,7 +12,7 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        $allTags = ['domestic', 'international', 'work', 'leisure', 'early flight', 'late flight', 'red-eye', 'carry-on', 'checked baggage'];
+        $allTags = ['domestic', 'international', 'work', 'leisure', 'carry on', 'checked baggage'];
 
         foreach($allTags as $tagName) {
             $tag = new Tag();

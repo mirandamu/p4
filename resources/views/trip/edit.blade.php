@@ -29,8 +29,12 @@
             <span class="error">{{ $errors->first('departure_date')}}</span><br>
 
             <label for="departure_time">Time:
-            <input type="text" id="departure_time" name="departure_time" value="{{ old('departure_time', $trip->departure_time) }}"></label>
+            <input type="time" id="departure_time" name="departure_time" value="{{ old('departure_time', date('H:i', strtotime($trip->departure_time))) }}"></label>
             <span class="error">{{ $errors->first('departure_time')}}</span><br>
+
+            <label for="departure_airport">Airport:
+            <input type="text" id="departure_airport" name="departure_airport" value="{{ old('departure_airport', $trip->departure_airport) }}"></label>
+            <span class="error">{{ $errors->first('departure_airport')}}</span><br>
 
             <label for="departure_airline">Airline:
             <input type="text" id="departure_airline" name="departure_airline" value="{{ old('departure_airline', $trip->departure_airline) }}"></label>
@@ -52,8 +56,12 @@
             <span class="error">{{ $errors->first('return_date')}}</span><br>
 
             <label for="return_time">Time:
-            <input type="text" id="return_time" name="return_time" value="{{ old('return_time', $trip->return_time) }}"></label>
+            <input type="time" id="return_time" name="return_time" value="{{ old('return_time', date('H:i', strtotime($trip->return_time))) }}"></label>
             <span class="error">{{ $errors->first('return_time')}}</span><br>
+
+            <label for="return_airport">Airport:
+            <input type="text" id="return_airport" name="return_airport" value="{{ old('return_airport', $trip->return_airport) }}"></label>
+            <span class="error">{{ $errors->first('return_airport')}}</span><br>
 
             <label for="return_airline">Airline:
             <input type="text" id="return_airline" name="return_airline" value="{{ old('return_airline', $trip->return_airline) }}"></label>
@@ -84,7 +92,12 @@
             <label class="tag" for="{{ $tag_name }}">
             <input type="checkbox" value="{{ $tag_id }}" name="tags[]" id="{{ $tag_name }}" {{ (in_array($tag_name, $tags_for_this_trip)) ? 'checked' : '' }}> {{ $tag_name }} </label><br>
         @endforeach
-        
+        <br>
+
+        <label for="notes">Additional notes:</label><br>
+        <textarea name="notes" id="notes" rows="5" cols="50">{{ old('notes', $trip->notes) }}</textarea>
+        <br>
+
         <input type="submit" value="Save Changes"><br>
         <a class="otheropts" href="/trips">Go back to dashboard without making changes</a><br>
         <a class="otheropts" href="/trips/{{ $trip->id }}/delete">Delete Trip</a>

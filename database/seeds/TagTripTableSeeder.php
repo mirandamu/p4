@@ -14,15 +14,12 @@ class TagTripTableSeeder extends Seeder
     public function run()
     {
         $trips =[
-            '1' => ['domestic', 'work'],
-            '2' => ['international', 'checked baggage'],
-            '3' => ['domestic', 'leisure'],
-            '4' => ['domestic', 'leisure'],
-            '5' => ['carry-on', 'international'],
-            '6' => ['domestic', 'early flight'],
-            '7' => ['red-eye', 'domestic'],
-            '8' => ['international', 'early flight'],
-            '9' => ['red-eye', 'domestic']
+            '1' => ['domestic', 'work', 'carry on'],
+            '2' => ['international', 'checked baggage', 'leisure'],
+            '3' => ['domestic', 'leisure', 'checked baggage'],
+            '4' => ['domestic', 'leisure', 'carry on'],
+            '5' => ['international', 'checked baggage', 'leisure'],
+            '6' => ['domestic', 'leisure', 'checked baggage']
         ];
 
         foreach($trips as $id => $tags) {

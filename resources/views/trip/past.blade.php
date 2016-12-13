@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Welcome Back to Traveler's Best Friend
+    Past Trips
 @endsection
 
 @section('content')
@@ -15,9 +15,9 @@
     </section>
 
     <section>
-        <h2>Upcoming Trips ({{ count($trips) }})</h2>
+        <h2>Past Trips ({{ count($trips) }})</h2>
         @if(sizeof($trips) == 0)
-            You currently do not have any upcoming trips. Start planning one!
+            You have not completed any trips yet.
         @else
             @foreach($trips as $trip)
                 <div class="individualtrip">

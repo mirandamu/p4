@@ -24,7 +24,8 @@
         <section class="tripdetails">
             <h2>Departure Flight</h2>
             Date: {{ date('D, M d, Y', strtotime($trip->departure_date)) }}<br>
-            Time: {{ $trip->departure_time }}<br>
+            Time: {{ date('g:iA', strtotime($trip->departure_time)) }}<br>
+            Airport: {{ $trip->departure_airport }}<br>
             Airline: {{ $trip->departure_airline }}<br>
             Flight confirmation: {{ $trip->departure_confirmation }}<br>
             Flight number: {{ $trip->departure_flight_number }}
@@ -32,7 +33,8 @@
         <section class="tripdetails">
             <h2>Return Flight</h2>
             Date: {{ date('D, M d, Y', strtotime($trip->return_date)) }}<br>
-            Time: {{ $trip->return_time }}<br>
+            Time: {{ date('g:iA', strtotime($trip->return_time)) }}<br>
+            Airport: {{ $trip->return_airport }}<br>
             Airline: {{ $trip->return_airline }}<br>
             Flight confirmation: {{ $trip->return_confirmation }}<br>
             Flight number: {{ $trip->return_flight_number }} 
@@ -50,17 +52,20 @@
             @endforeach
             </ul>
         </section>
+        <section class="tripdetails">
+            <h2>Map</h2>
+            <iframe
+              width="100%"
+              height="450"
+              frameborder="0" style="border:0"
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDJXimpJkedKGb2hA3_OLSg80yP9us_Hi8
+                &q={{ $trip->destination }}">
+            </iframe>
+        </section>
+        <section class="tripdetails">
+            <h2>Notes</h2>
+            <pre>{{ $trip->notes }}</pre>
+        </section>
     </div>
-
-    <div class="map">
-        <iframe
-          width="49%"
-          height="450"
-          frameborder="0" style="border:0"
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDJXimpJkedKGb2hA3_OLSg80yP9us_Hi8
-            &q={{ $trip->destination }}">
-        </iframe>
-    </div>
-
 
 @endsection

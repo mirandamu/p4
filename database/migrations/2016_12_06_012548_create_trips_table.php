@@ -22,12 +22,14 @@ class CreateTripsTable extends Migration
 
             $table->date('departure_date');
             $table->time('departure_time')->nullable();
+            $table->string('departure_airport')->nullable();
             $table->string('departure_airline')->nullable();
             $table->string('departure_confirmation')->nullable();
             $table->string('departure_flight_number')->nullable();
             
             $table->date('return_date');
             $table->time('return_time')->nullable();
+            $table->string('return_airport')->nullable();
             $table->string('return_airline')->nullable();
             $table->string('return_confirmation')->nullable();
             $table->string('return_flight_number')->nullable();
@@ -35,7 +37,8 @@ class CreateTripsTable extends Migration
 
             $table->string('accomodation_name')->nullable();
             $table->string('accomodation_address')->nullable();
-            $table->string('accomodation_website')->nullable();
+            
+            $table->text('notes')->nullable();
 
         });
     }

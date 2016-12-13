@@ -96,10 +96,21 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'departure_date' => [
+            'date_format' => 'Please enter the date in YYYY-MM-DD format'
+        ],
+        'return' => [
+            'date_format' => 'Please enter the date in YYYY-MM-DD format'
+        ],
+        'departure_time' => [
+            'date_format' => 'Please enter the time in 24-hour format e.g. 18:30',
+        ],
+        'return_time' => [
+            'date_format' => 'Please enter the time in 24-hour format e.g. 18:30',
         ],
     ],
+
+
 
     /*
     |--------------------------------------------------------------------------
